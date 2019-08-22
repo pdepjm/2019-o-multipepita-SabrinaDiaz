@@ -1,6 +1,6 @@
 object pepita {
 	var energia = 340
-	var kilometros = 0
+
     
 	method estaCansada() {
 		return energia < 50
@@ -19,24 +19,27 @@ object pepita {
 	}
 		
 	method estaFeliz() {
-		return energia > 500  && energia  < 1000
+		return energia.between(500, 1000)
 	}
 	
 	method cuantoQuiereVolar() {
-		return (energia/5)
-	}
-	
-	method aumentarKmsSegunEnergia(kms) {
-		if(energia > 300 && energia < 400) {
-		return kms.sumarKilometros(10) + self.cuantoQuiereVolar()
-		} else {
-		}
-	}
-	method sumarKilometros(cantidad) {
-		kilometros = cantidad + self.cuantoQuiereVolar()
+		var kilometros = (energia/5) // kilometros que quiere volar
 		
-	}
+		if (energia.between(300, 400) && energia % 20 == 0) {
+				return kilometros + 25
+		
+		} else if(energia % 20 == 0){
+			   return kilometros + 15
+			   
+		} else if (energia.between(300, 400)) {
+				return kilometros + 10
+			} else {
+				return kilometros
+			}
+		}
+		
 }
+
 
 object alpiste {
 	var gramos = 10
