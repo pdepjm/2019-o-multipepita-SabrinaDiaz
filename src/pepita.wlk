@@ -9,7 +9,7 @@ object pepita {
 		return energia < 50
 	}
 	
-	method salirAComer(){ // deposito y la casa de pepita son objetos ?
+	method salirAComer(){ 
 		self.vola(5)
 		self.come(alpiste)
 		self.vola(5)
