@@ -44,27 +44,42 @@ object pepita {
 				return kilometros
 			}
 		}
+		
+	method haceLoQueQuieras(){
+		if(self.estaCansada()){
+		   self.come(alpiste)
+		} 
+		
+		if(self.estaFeliz()){
+			self.vola(8)
+		}
+	}
+	
+	method entrenar(){
+		self.vola(10)
+		self.come(alpiste)
+		self.vola(5)
+		self.haceLoQueQuieras()
+	}
 }
 
 object mijo {
-	var a = 0
-	//var estaMojado = 1 //1 significa true, 0 es false
+	var estaMojado = false //se inicia una variable de estado, para tener con que comparar
 	
-	//me devuelve 30 de energia despues de los pasos,creo que tengo un error acá
-	method energiaQueOtorga() {/
-		if(self.mojarse() == 15) {
-		return self.mojarse()
+	method energiaQueOtorga() {
+		if(estaMojado) {
+		return 15
 		} else {
-		return self.secarse()
+		return 20
 	}
 	}
 	
 	method mojarse(){
-		a += 15
+		estaMojado = true
 		} 
 		
 	method secarse(){
-		a += 20
+		estaMojado = false
 	}
 }
 
@@ -84,4 +99,42 @@ object manzana {
 	method energiaQueOtorga() { 
 		return 50
 	}	
+}
+
+object canelon {
+	var masaCanelon = 20
+	var salsa = false
+	var queso = false
+	
+	method energiaQueOtorga(){
+		if(salsa && queso) {
+			return masaCanelon + 12
+		} 
+	   else if(queso){
+			return masaCanelon + 7
+		} 
+		else if(salsa){
+			return masaCanelon + 5
+		} 
+		return 0
+}	
+	method ponerSalsa(){
+		salsa = true
+	}
+	method sacarSalsa(){
+		salsa = false
+	}
+	method ponerQueso(){
+		queso = true
+	}
+	method sacarQueso(){
+		queso = false
+	}
+}
+
+object roque {
+	
+	method entrenar(golondrina){
+		golondrina.entrenar()
+	}
 }
