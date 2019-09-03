@@ -1,60 +1,54 @@
 object pepita {
-	var energia = 0
+	var energia = 340
 	
 	method energia() {
 		return energia
 	}
-	
 	method estaCansada() {
 		return energia < 50
 	}
-	
 	method salirAComer(){ 
 		self.vola(5)
 		self.come(alpiste)
 		self.vola(5)
 	}
-
 	method vola(kms) {
 		energia -= 10 + kms
 	}
-
 	method come(comida) {
 		energia = energia + comida.energiaQueOtorga()
 	}
-		
 	method estaFeliz() {
 		return energia.between(500, 1000)
 	}
-	
 	method cuantoQuiereVolar() {
-		//hay otra forma de hacer este metodo que no se utilizando if y else ?
+	
+		var kmsBase = (energia/5) // kilometros que quiere volar
 		
-		var kilometros = (energia/5) // kilometros que quiere volar
-		
-		if (energia.between(300, 400) && energia % 20 == 0) {
-				return kilometros + 25
-		
-		} else if(energia % 20 == 0){
-			   return kilometros + 15
-			   
-		} else if (energia.between(300, 400)) {
-				return kilometros + 10
-			} else {
-				return kilometros
-			}
+		return kmsBase + self.kmsEnergiaIntermedia() + self.kmsEnergiaMultiplo()
+	}
+	method kmsEnergiaIntermedia(){
+			if (energia.between(300, 400)) {
+				return 10
+		} else {
+			return 0
 		}
-		
+}		
+	method kmsEnergiaMultiplo(){
+			if (energia % 20 == 0) {
+				return 15
+		}else {
+			return 0
+		}
+}
 	method haceLoQueQuieras(){
 		if(self.estaCansada()){
 		   self.come(alpiste)
-		} 
-		
+		}
 		if(self.estaFeliz()){
 			self.vola(8)
 		}
 	}
-	
 	method entrenar(){
 		self.vola(10)
 		self.come(alpiste)
@@ -62,7 +56,6 @@ object pepita {
 		self.haceLoQueQuieras()
 	}
 }
-
 object mijo {
 	var estaMojado = false //se inicia una variable de estado, para tener con que comparar
 	
@@ -72,8 +65,7 @@ object mijo {
 		} else {
 		return 20
 	}
-	}
-	
+}
 	method mojarse(){
 		estaMojado = true
 		} 
@@ -107,27 +99,32 @@ object canelon {
 	var queso = false
 	
 	method energiaQueOtorga(){
-		if(salsa && queso) {
-			return masaCanelon + 12
-		} 
-	   else if(queso){
-			return masaCanelon + 7
-		} 
-		else if(salsa){
-			return masaCanelon + 5
-		} 
-		return 0
-}	
+		return masaCanelon + self.ponerSalsa() + self.ponerQueso()
+	}	
 	method ponerSalsa(){
+			if(salsa){
+				return 5
+			} else {
+				return 0
+			}
+}
+    method ponerQueso(){
+			if(queso){
+				return 7
+			} else {
+				return 0
+			}
+}
+	method tengoSalsa(){
 		salsa = true
 	}
-	method sacarSalsa(){
-		salsa = false
+	method seAcaboLaSalsa(){
+		salsa =false
 	}
-	method ponerQueso(){
+	method tengoQueso(){
 		queso = true
 	}
-	method sacarQueso(){
+	method seAcaboElQueso(){
 		queso = false
 	}
 }
