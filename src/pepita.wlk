@@ -28,17 +28,17 @@ object pepita {
 		return kmsBase + self.kmsEnergiaIntermedia() + self.kmsEnergiaMultiplo()
 	}
 	method kmsEnergiaIntermedia(){
-			if (energia.between(300, 400)) {
-				return 10
+		if(energia.between(300, 400)) {
+		return 10
 		} else {
-			return 0
+		return 0
 		}
 }		
 	method kmsEnergiaMultiplo(){
-			if (energia % 20 == 0) {
-				return 15
+	       if (energia % 20 == 0) {
+		return 15
 		}else {
-			return 0
+		return 0
 		}
 }
 	method haceLoQueQuieras(){
@@ -102,18 +102,18 @@ object canelon {
 		return masaCanelon + self.ponerSalsa() + self.ponerQueso()
 	}	
 	method ponerSalsa(){
-			if(salsa){
-				return 5
-			} else {
-				return 0
-			}
+	       if(salsa){
+	       return 5
+		} else {
+		return 0
+		}
 }
     method ponerQueso(){
-			if(queso){
-				return 7
-			} else {
-				return 0
-			}
+	   if(queso){
+	    return 7
+	   } else {
+           return 0
+	}
 }
 	method tengoSalsa(){
 		salsa = true
